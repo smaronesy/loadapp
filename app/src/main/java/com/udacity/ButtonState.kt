@@ -1,8 +1,13 @@
 package com.udacity
 
+sealed class ButtonState(val state: String) {
+    object Clicked : ButtonState("Clicked")
+    object Loading : ButtonState("Loading")
+    object Completed : ButtonState("Completed")
 
-sealed class ButtonState {
-    object Clicked : ButtonState()
-    object Loading : ButtonState()
-    object Completed : ButtonState()
+    fun next() = when (this) {
+        Clicked -> Loading
+        Loading -> Completed
+        Completed -> Clicked
+    } as Int
 }
