@@ -30,6 +30,12 @@ fun NotificationManager.sendNotification(messageBody: String, status: String, ap
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
+    val notificationAction = NotificationCompat.Action(
+        R.drawable.ic_baseline_pageview_24,
+        "Status Page",
+        contentPendingIntent
+    )
+
     val downloadIcon = BitmapFactory.decodeResource(
         applicationContext.resources,
         R.drawable.img
@@ -53,6 +59,7 @@ fun NotificationManager.sendNotification(messageBody: String, status: String, ap
         .setStyle(bigPicStyle)
         .setLargeIcon(downloadIcon)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .addAction(notificationAction)
 
     //call notify
 //    with(NotificationManagerCompat.from(applicationContext)) {
